@@ -1,0 +1,150 @@
+.SortVisualizer {
+    width: 100vw;
+    height: 100vh;
+}
+.SortVisualizer * {
+    transition: all 0.3s ease-in 0s;
+}
+.light-mode {
+    background-color: #e6e9f0 0%;
+    transition: all 0.3s ease-in 0s;
+}
+.dark-mode {
+    background-color: #18191a;
+    transition: all 0.3s ease-in 0s;
+}
+header {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+}
+select {
+    text-align-last: center;
+}
+.nav-item {
+    height: 40px;
+    width: 200px;
+    margin: 10px;
+    border: 0;
+}
+.light-mode .nav-item {
+    background-color: white;
+    box-shadow: 0 5px 20px #454545;
+    color: #3a3b3c;
+}
+.dark-mode .nav-item {
+    background-color: #4d4d4d;
+    color: white;
+}
+.light-mode .nav-item:hover {
+    background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+}
+.dark-mode .nav-item:hover {
+    background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+    color: #3a3b3c;
+}
+.nav-item:focus {
+    outline: 0;
+}
+
+.visualizer-container {
+    min-height: 300px;
+    height: calc(100vh - 100px);
+    background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+    box-shadow: 0 5px 20px #454545;
+    margin: 20px;
+    display: flex;
+    align-items: flex-end;
+}
+.light-mode .visualizer-container {
+    background: white;
+}
+.dark-mode .visualizer-container {
+    background: #242526;
+}
+.array-bar {
+    flex: 1;
+    margin: 1px;
+    border-radius: 20px 20px 0 0;
+}
+.light-mode .array-bar {
+    background: #824396;
+}
+.dark-mode .array-bar {
+    background: #a74f53;
+}
+
+/*-----------------STYLE FROM:-----------------*/
+/*      https://proto.io/freebies/onoff/       */
+/*---------------------------------------------*/
+.onoffswitch {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 90px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #757575;
+    border-radius: 0px;
+}
+.onoffswitch-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before,
+.onoffswitch-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 30px;
+    padding: 0;
+    line-height: 30px;
+    font-size: 14px;
+    color: white;
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 10px;
+    background-color: #4d4d4d;
+    color: #e6e6e6;
+}
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 10px;
+    background-color: #eeeeee;
+    color: #333333;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block;
+    width: 18px;
+    margin: 6px;
+    background: #ffffff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 56px;
+    border: 2px solid #757575;
+    border-radius: 0px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
