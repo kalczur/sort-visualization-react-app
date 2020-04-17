@@ -6,7 +6,8 @@ import "./SortVisualizer.css";
 
 const ANIMATION_SPEED_MS = 10;
 
-const PRIMARY_BAR_COLOR = "#824396";
+const L_PRIMARY_BAR_COLOR = "#824396";
+const D_PRIMARY_BAR_COLOR = "#a74f53";
 const ACTIVE_BAR_COLOR = "green";
 
 const SortVisualizer = () => {
@@ -68,7 +69,11 @@ const SortVisualizer = () => {
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
                 const color =
-                    i % 3 === 0 ? ACTIVE_BAR_COLOR : PRIMARY_BAR_COLOR;
+                    i % 3 === 0
+                        ? ACTIVE_BAR_COLOR
+                        : darkMode
+                        ? D_PRIMARY_BAR_COLOR
+                        : L_PRIMARY_BAR_COLOR;
                 setTimeout(() => {
                     barOneStyle.backgroundColor = color;
                     barTwoStyle.backgroundColor = color;
@@ -89,35 +94,36 @@ const SortVisualizer = () => {
     //--------------------------------------------------
 
     const bubbleSort = () => {
-        const animations = bubbleSortAnimations(array);
+        const animations = bubbleSortAnimations([...array]);
+        let i = -1;
 
-        for (let i = 0; i < animations.length; i++) {
+        let bubbleSortInr = setInterval(() => {
+            i++;
+
             const arrayBars = document.getElementsByClassName("array-bar");
 
-            setTimeout(() => {
-                const barOneStyle = arrayBars[animations[i][1]].style;
-                const barTwoStyle = arrayBars[animations[i][2]].style;
-                barOneStyle.backgroundColor = barTwoStyle.backgroundColor = PRIMARY_BAR_COLOR;
-            }, i * ANIMATION_SPEED_MS);
+            const barOneStyle = arrayBars[animations[i][1]].style;
+            const barTwoStyle = arrayBars[animations[i][2]].style;
+            barOneStyle.backgroundColor = barTwoStyle.backgroundColor = ACTIVE_BAR_COLOR;
 
             if (animations[i][0] === 1) {
-                setTimeout(() => {
-                    const barOneStyle = arrayBars[animations[i][1]].style;
-                    const tmpBarOneHeight = barOneStyle.height;
-                    const barTwoStyle = arrayBars[animations[i][2]].style;
-
-                    barOneStyle.height = `${parseInt(barTwoStyle.height)}%`;
-                    barTwoStyle.height = `${parseInt(tmpBarOneHeight)}%`;
-                }, i * ANIMATION_SPEED_MS);
-            } else if (animations[i][0] === 0) {
-                setTimeout(() => {
-                    const barOneStyle = arrayBars[animations[i][1]].style;
-                    const barTwoStyle = arrayBars[animations[i][2]].style;
-                    barOneStyle.backgroundColor = barTwoStyle.backgroundColor = ACTIVE_BAR_COLOR;
-                }, i * ANIMATION_SPEED_MS);
+                const tmpBarOneHeight = barOneStyle.height;
+                barOneStyle.height = `${parseInt(barTwoStyle.height)}%`;
+                barTwoStyle.height = `${parseInt(tmpBarOneHeight)}%`;
+                barOneStyle.backgroundColor = barTwoStyle.backgroundColor = darkMode
+                    ? D_PRIMARY_BAR_COLOR
+                    : L_PRIMARY_BAR_COLOR;
+            } else if (animations[i][0] === 2) {
+                barOneStyle.backgroundColor = barTwoStyle.backgroundColor = darkMode
+                    ? D_PRIMARY_BAR_COLOR
+                    : L_PRIMARY_BAR_COLOR;
             }
-        }
-        setIsSorting(false);
+
+            if (i == animations.length - 1) {
+                setIsSorting(false);
+                clearInterval(bubbleSortInr);
+            }
+        }, 10);
     };
     //--------------------------------------------------
     //--------------------bubble sort-----------------
