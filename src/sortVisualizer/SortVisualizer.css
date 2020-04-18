@@ -5,8 +5,9 @@
     width: 100vw;
     height: 100vh;
 }
-/* .SortVisualizer * {
-    transition: all 0.01s ease-in 0s;
+/*
+.SortVisualizer * {
+    transition: all 0.3s ease-in 0s;
 } */
 .light-mode {
     background-color: #e6e9f0 0%;
@@ -64,6 +65,7 @@ select {
     margin: 10px;
     display: flex;
     align-items: flex-end;
+    justify-content: space-around;
 }
 .light-mode .visualizer-container {
     background: white;
@@ -73,14 +75,13 @@ select {
 }
 .array-bar {
     flex: 1;
-    margin: 1px;
+    min-width: 1px;
+    margin-left: 1px;
+    background: #a74f53;
     border-radius: 20px 20px 0 0;
 }
-.light-mode .array-bar {
-    background: #824396;
-}
-.dark-mode .array-bar {
-    background: #a74f53;
+.active-array-bar {
+    background: green;
 }
 
 /*-----------------STYLE FROM:-----------------*/
