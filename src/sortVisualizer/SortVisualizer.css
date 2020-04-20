@@ -5,16 +5,12 @@
     width: 100vw;
     height: 100vh;
 }
-/*
-.SortVisualizer * {
-    transition: all 0.3s ease-in 0s;
-} */
 .light-mode {
     background-color: #e6e9f0 0%;
     transition: all 0.3s ease-in 0s;
 }
 .dark-mode {
-    background-color: #18191a;
+    background-color: #151515;
     transition: all 0.3s ease-in 0s;
 }
 header {
@@ -25,9 +21,15 @@ header {
 select {
     text-align-last: center;
 }
+.light-mode select {
+    color: white;
+}
+.dark-mode select {
+    color: black;
+}
 .nav-item {
-    height: 30px;
-    width: 65px;
+    height: 3rem;
+    width: 5rem;
     margin: 30px 4px 0px;
     border: 0;
     font-size: 1rem;
@@ -42,7 +44,7 @@ select {
     color: #3a3b3c;
 }
 .dark-mode .nav-item {
-    background-color: #4d4d4d;
+    background-color: #1b1b1b;
     color: white;
 }
 .light-mode .nav-item:hover {
@@ -77,11 +79,11 @@ select {
     flex: 1;
     min-width: 1px;
     margin-left: 1px;
-    background: #a74f53;
+    background: #ea4335;
     border-radius: 20px 20px 0 0;
 }
 .active-array-bar {
-    background: green;
+    background: #34a853;
 }
 
 /*-----------------STYLE FROM:-----------------*/
@@ -161,8 +163,8 @@ select {
 
 @media only screen and (min-width: 450px) {
     .nav-item {
-        height: 30px;
-        width: 90px;
+        height: 3rem;
+        width: 7rem;
         font-size: 1rem;
     }
     .visualizer-container {
@@ -172,7 +174,7 @@ select {
 @media only screen and (min-width: 700px) {
     .nav-item {
         height: 3.5rem;
-        width: 12rem;
+        width: 11rem;
         margin: 20px 4px 0px;
         font-size: 1.5rem;
     }
@@ -196,7 +198,7 @@ select {
 @media only screen and (min-width: 1000px) {
     .nav-item {
         height: 4rem;
-        width: 20rem;
+        width: 15rem;
         font-size: 1.7rem;
     }
     .onoffswitch {
@@ -220,7 +222,7 @@ select {
 @media only screen and (min-width: 1600px) {
     .nav-item {
         height: 4rem;
-        width: 30rem;
+        width: 25rem;
         font-size: 2rem;
     }
     .onoffswitch {
