@@ -1,7 +1,6 @@
 export const insertionSortAnimations = (array) => {
-    let tmpArr = array;
     let animations = [];
-    insertionSort(tmpArr, animations);
+    insertionSort(array, animations);
     return animations;
 };
 
@@ -20,5 +19,4 @@ const insertionSort = (inputArr, animations) => {
         inputArr[j + 1] = key;
         animations.push([2, j + 1, key]);
     }
-    console.log(inputArr);
 };

@@ -38,46 +38,22 @@ const doMerge = (
     let i = startIdx;
     let j = middleIdx + 1;
     while (i <= middleIdx && j <= endIdx) {
-        // These are the values that we're comparing; we push them once
-        // to change their color.
-        animations.push([0, i, j]);
-        // These are the values that we're comparing; we push them a second
-        // time to revert their color.
         animations.push([0, i, j]);
         if (auxiliaryArray[i] <= auxiliaryArray[j]) {
-            // We overwrite the value at index k in the original array with the
-            // value at index i in the auxiliary array.
             animations.push([2, k, auxiliaryArray[i]]);
             mainArray[k++] = auxiliaryArray[i++];
         } else {
-            // We overwrite the value at index k in the original array with the
-            // value at index j in the auxiliary array.
             animations.push([2, k, auxiliaryArray[j]]);
             mainArray[k++] = auxiliaryArray[j++];
         }
     }
     while (i <= middleIdx) {
-        // These are the values that we're comparing; we push them once
-        // to change their color.
         animations.push([0, i, i]);
-        // These are the values that we're comparing; we push them a second
-        // time to revert their color.
-        animations.push([0, i, i]);
-        // We overwrite the value at index k in the original array with the
-        // value at index i in the auxiliary array.
         animations.push([2, k, auxiliaryArray[i]]);
         mainArray[k++] = auxiliaryArray[i++];
     }
     while (j <= endIdx) {
-        // These are the values that we're comparing; we push them once
-        // to change their color.
         animations.push([0, j, j]);
-        // These are the values that we're comparing; we push them a second
-        // time to revert their color.
-        animations.push([0, j, j]);
-        // We overwrite the value at index k in the original array with the
-        // value at index j in the auxiliary array.
-        animations.push([2, k, auxiliaryArray[j]]);
         mainArray[k++] = auxiliaryArray[j++];
     }
 };

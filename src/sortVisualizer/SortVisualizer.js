@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { bubbleSortAnimations } from "../algorithms/BubbleSort";
 import { insertionSortAnimations } from "../algorithms/InsertionSort";
-import { mergeSortAnimations } from "../algorithms/MargeSort";
+import { mergeSortAnimations } from "../algorithms/MergeSort";
 import { quickSortAnimations } from "../algorithms/QuickSort";
 import "./SortVisualizer.css";
 
@@ -17,14 +17,21 @@ const SortVisualizer = () => {
     const [algorithm, setAlgorithm] = useState("bubbleSort");
     const [speed, setSpeed] = useState(10);
 
+    useEffect(() => {
+        //load color mode form local storage
+        if (localStorage.length === 0)
+            localStorage.setItem("darkMode", darkMode);
+        setDarkMode(localStorage.getItem("darkMode") === "true" ? true : false);
+        generateArray();
+    }, []);
+
     const generateArray = () => {
         if (!isSorting) {
             const tempArray = [];
             for (let i = 0; i < arraySize; i++) {
-                tempArray.push(Math.round(Math.random() * 96) + 2);
+                tempArray.push(parseInt(Math.random() * 96) + 2);
             }
             setArray(tempArray);
-            //resetBarsColor();
         } else {
             window.location.reload(true);
         }
@@ -44,7 +51,6 @@ const SortVisualizer = () => {
 
     const startSorting = () => {
         if (isSorting) return;
-        if (array.length != arraySize) return;
         setIsSorting(true);
 
         // animations is 3xN array
@@ -62,7 +68,7 @@ const SortVisualizer = () => {
                 break;
             case "mergeSort":
                 animations = mergeSortAnimations([...array]);
-                return;
+                break;
             case "quickSort":
                 animations = quickSortAnimations([...array]);
                 break;
@@ -70,12 +76,13 @@ const SortVisualizer = () => {
                 setIsSorting(false);
                 return;
         }
-
-        visualizeAnimations(animations, speed);
+        visualizeAnimations(animations);
     };
 
-    const visualizeAnimations = (animations, speed) => {
+    const visualizeAnimations = (animations) => {
         let i = -1;
+        const t0 = performance.now();
+
         let sortVisualizationInr = setInterval(() => {
             i++;
 
@@ -104,32 +111,23 @@ const SortVisualizer = () => {
                     barOneStyle.backgroundColor = PRIMARY_COLOR;
                 }, speed);
             }
-            if (i == animations.length - 1) {
-                printSuccess();
+            if (i === animations.length - 1) {
+                let tmpArray = [];
+                for (let i = 0; i < arrayBars.length; i++)
+                    tmpArray.push(parseInt(arrayBars[i].style.height));
+                setArray(tmpArray);
+
+                const t1 = performance.now();
+                printSuccess(t1 - t0);
                 clearInterval(sortVisualizationInr);
             }
         }, speed);
     };
 
-    const printSuccess = () => {
-        const arrayBars = document.getElementsByClassName("array-bar");
-        let i = -1;
-        let finish = setInterval(() => {
-            i++;
-            arrayBars[i].classList.add(".active-array-bar");
-
-            if (i == arrayBars.length - 1) {
-                setIsSorting(false);
-                clearInterval(finish);
-            }
-        }, 20);
-    };
-
-    const resetBarsColor = () => {
-        const arrayBars = document.getElementsByClassName("array-bar");
-        if (arraySize == arrayBars.length)
-            for (let i = 0; i < arrayBars.length; i++)
-                arrayBars.style.backgroundColor = PRIMARY_COLOR;
+    const printSuccess = (time) => {
+        // TO DO ( show time on screen )
+        console.log(parseFloat(time / 1000) + "s");
+        setIsSorting(false);
     };
 
     return (
@@ -180,16 +178,20 @@ const SortVisualizer = () => {
                     </button>
                     <div className="onoffswitch">
                         <input
+                            onChange={(e) => {}}
                             type="checkbox"
                             name="onoffswitch"
                             className="onoffswitch-checkbox"
                             id="myonoffswitch"
+                            checked={darkMode}
                         />
                         <label
                             className="onoffswitch-label"
                             htmlFor="myonoffswitch"
                             onClick={() => {
+                                // save color mode to local storage
                                 setDarkMode(!darkMode);
+                                localStorage.setItem("darkMode", !darkMode);
                             }}
                         >
                             <span className="onoffswitch-inner"></span>

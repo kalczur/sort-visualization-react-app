@@ -3,6 +3,7 @@ import { swap } from "./AlgorithmsHelpfulMethods";
 export const bubbleSortAnimations = (array) => {
     let animations = [];
     bubbleSort(array, animations);
+
     return animations;
 };
 
