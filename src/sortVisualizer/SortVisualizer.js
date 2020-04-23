@@ -16,6 +16,8 @@ const SortVisualizer = () => {
     const [array, setArray] = useState([]);
     const [algorithm, setAlgorithm] = useState("bubbleSort");
     const [speed, setSpeed] = useState(10);
+    const [time, setTime] = useState(0.0);
+    const [showTimeBar, setShowTimeBar] = useState(false);
 
     useEffect(() => {
         //load color mode form local storage
@@ -26,6 +28,7 @@ const SortVisualizer = () => {
     }, []);
 
     const generateArray = () => {
+        setShowTimeBar(false);
         if (!isSorting) {
             const tempArray = [];
             for (let i = 0; i < arraySize; i++) {
@@ -125,8 +128,8 @@ const SortVisualizer = () => {
     };
 
     const printSuccess = (time) => {
-        // TO DO ( show time on screen )
-        console.log(parseFloat(time / 1000) + "s");
+        setShowTimeBar(true);
+        setTime(time);
         setIsSorting(false);
     };
 
@@ -211,6 +214,15 @@ const SortVisualizer = () => {
                         }}
                     ></div>
                 ))}
+            </div>
+
+            <div
+                className="timeBaner"
+                style={{
+                    opacity: `${showTimeBar ? 1 : 0}`,
+                }}
+            >
+                {(time / 1000).toFixed(2)}s
             </div>
         </div>
     );

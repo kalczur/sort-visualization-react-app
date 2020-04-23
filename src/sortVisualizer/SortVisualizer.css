@@ -63,7 +63,6 @@ select {
 .visualizer-container {
     min-height: 300px;
     height: calc(100vh - 100px);
-    box-shadow: 0 5px 20px #454545;
     margin: 10px;
     display: flex;
     align-items: flex-end;
@@ -71,21 +70,43 @@ select {
 }
 .light-mode .visualizer-container {
     background: white;
+    box-shadow: 0 5px 20px #454545;
 }
 .dark-mode .visualizer-container {
     background: #242526;
+    box-shadow: 0 5px 20px #454545;
 }
 .array-bar {
     flex: 1;
     min-width: 1px;
-    margin-left: 1px;
+    margin-left: 0px;
     background: #ea4335;
     border-radius: 20px 20px 0 0;
 }
 .active-array-bar {
     background: #34a853;
 }
-
+.timeBaner {
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    top: calc(50% - 50px);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 7em;
+    text-align: center;
+    transition: all 0.3s ease-in 0s;
+}
+.light-mode .timeBaner {
+    background: #151515;
+    color: #ccc;
+    box-shadow: 0 5px 20px #454545;
+}
+.dark-mode .timeBaner {
+    background: #ccc;
+    color: #151515;
+    box-shadow: 0 5px 20px #000;
+}
 /*-----------------STYLE FROM:-----------------*/
 /*      https://proto.io/freebies/onoff/       */
 /*---------------------------------------------*/
@@ -160,7 +181,9 @@ select {
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px;
 }
-
+/*---------------------------------------------*/
+/*                    MEDIA                    */
+/*---------------------------------------------*/
 @media only screen and (min-width: 450px) {
     .nav-item {
         height: 3rem;
@@ -177,6 +200,9 @@ select {
         width: 11rem;
         margin: 20px 4px 0px;
         font-size: 1.5rem;
+    }
+    .array-bar {
+        margin-left: 1px;
     }
     .onoffswitch {
         top: 0.5rem;
