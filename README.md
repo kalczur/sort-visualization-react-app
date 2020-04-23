@@ -12,8 +12,6 @@
 
 **OR your can do the following to run in your local machine**
 
------------------------------------------------------------------------------------
-
 ## Scripts
 
 Install node modules
