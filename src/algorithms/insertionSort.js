@@ -1,22 +1,22 @@
 export const insertionSortAnimations = (array) => {
-    let animations = [];
-    insertionSort(array, animations);
-    return animations;
+  let animations = [];
+  insertionSort(array, animations);
+  return animations;
 };
 
 const insertionSort = (inputArr, animations) => {
-    const length = inputArr.length;
+  const length = inputArr.length;
 
-    for (let i = 1; i < length; i++) {
-        let key = inputArr[i];
-        let j = i - 1;
-        while (j >= 0 && inputArr[j] > key) {
-            inputArr[j + 1] = inputArr[j];
-            animations.push([0, i, j]);
-            animations.push([2, j + 1, inputArr[j]]);
-            j = j - 1;
-        }
-        inputArr[j + 1] = key;
-        animations.push([2, j + 1, key]);
+  for (let i = 1; i < length; i++) {
+    let key = inputArr[i];
+    let j = i - 1;
+    while (j >= 0 && inputArr[j] > key) {
+      inputArr[j + 1] = inputArr[j];
+      animations.push([0, i, j]);
+      animations.push([2, j + 1, inputArr[j]]);
+      j = j - 1;
     }
+    inputArr[j + 1] = key;
+    animations.push([2, j + 1, key]);
+  }
 };
